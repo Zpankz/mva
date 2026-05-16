@@ -1,0 +1,36 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Temporary / build
+*.log
+*.tmp
+dist/
+build/
+node_modules/
+__pycache__/
+*.pyc
+
+# Environment
+.env
+.env.local
+
+# Beads (bd) - the JSONL is committed, SQLite is local
+.beads/*.db
+.beads/*.db-journal
+
+# Artifacts generated during use (runtime)
+artifacts/
+mva/
+governance/
+iteration-*.md
+heuristics-catalog-*.md
+
+# Keep the templates and references, but runtime instances go in user's project
