@@ -1,27 +1,24 @@
 # LAT
 
-**Living Architecture Trace for the Heuristics Methodology**
+**Living Architecture Trace for the MVA Heuristic**
 
-This file follows the `lat.md` authoring conventions (strict leading paragraphs, section identity, wiki-style linking).
-
----
-
-## What This File Is
-
-`LAT.md` is the structured, cumulative knowledge base for the *Heuristics planning methodology itself*.
-
-It records discoveries, refinements, and meta-heuristics that have emerged from real usage across multiple projects. It is the primary document an agent should consult when it needs to understand "how Heuristics is actually practiced" rather than "what the initial spec said."
+This document follows `lat.md` authoring conventions. Every section begins with a leading paragraph that establishes its identity.
 
 ---
 
-## Reading Order in This Repo
+## Purpose of This Document
 
-When working on or with the Heuristics project, follow this order:
+`LAT.md` serves as the structured, cumulative knowledge graph for the MVA heuristic methodology.
 
-1. `AGENTS.md` — how to work on *this repo*
-2. `LAT.md` + `SKILL.md` — what the methodology has become through use
-3. `MVA.md` / `SPEC.md` / `DESIGN.md` — the formal contracts and implementation design
-4. `GOAL.md` — the deepest "why"
+It captures discoveries, refinements, meta-heuristics, and cross-document mappings that emerge from real usage. Agents consult this file to understand how the methodology actually behaves in practice, rather than relying solely on initial specifications.
+
+---
+
+## Position in the Document Lifecycle
+
+`LAT.md` is maintained **after** a `GOAL.md` has been created but **before** that goal is executed in production.
+
+Its primary role is to map symbols, definitions, concepts, and relationships so that an agent running the `GOAL.md` has reliable, navigable access to the underlying knowledge.
 
 ---
 
@@ -29,83 +26,56 @@ When working on or with the Heuristics project, follow this order:
 
 ### Heuristic
 
-A concrete, evidence-backed observation about architectural discovery that was forced by stress on an MVA.
+A concrete, evidence-backed observation about what worked or failed during the construction and validation of a Minimally Viable Architecture.
 
-Every heuristic in this document must eventually trace back to a specific cycle in a real engagement's iteration log.
+Every entry in this document should eventually trace back to a specific cycle or decision recorded in a project's `MVA.md`.
 
 ### Governance Layer Evolution
 
-Changes to what sections, fields, or invariants are considered mandatory in a governance layer after multiple projects.
+Changes to the expected structure, sections, or invariants of a governance layer that have been validated across multiple real MVA engagements.
 
 ### Phase Gate Refinement
 
-Modifications to the strictness, ordering, or exit criteria of H0–H5 that were required by lived experience.
+Adjustments to the strictness, ordering, or exit criteria of the MVA heuristic phases, driven by practical experience rather than theory.
 
 ---
 
 ## Discovered Heuristics
 
-### The Minimum Viable Stress Gate is Load-Bearing
+### The Living Journal Nature of MVA.md Is Essential
 
-Weak governance layers almost always come from insufficient stress during H2, not from insufficient synthesis skill in H3.
+Recording failures, pivots, and moments of confusion in `MVA.md` produces significantly higher-quality `DESIGN.md`, `SPEC.md`, and `GOAL.md` than recording only successes.
 
-**Evidence:** Multiple early internal runs where teams produced beautiful but hollow governance documents after only happy-path iteration.
+**Implication:** Agents must be encouraged to write honestly in the MVA journal, including dead ends and reversals.
 
-**Implication:** The H2 → H3 gate must remain strict even when the user is eager to "move on."
+### Formalization Should Not Happen Too Early
 
-### Psychological Attachment to the MVA is the Primary Failure Mode
+Decomposing an incomplete or weakly stressed `MVA.md` into `DESIGN.md` and `SPEC.md` tends to lock in fragile assumptions.
 
-Teams and agents frequently fall in love with the MVA they built and begin negotiating "how much of it we can keep."
-
-**Evidence:** Observed in the creation of the methodology itself and in early test runs.
-
-**Implication:** The H4 deprecation ritual (`mva/DEPRECATED.md`) must be performed explicitly and without negotiation.
+**Implication:** The transition from MVA to formal documentation should be gated by clear evidence that a stable, working architecture has emerged.
 
 ---
 
-## Governance Layer Schema Changes
+## Cross-Document Mappings
 
-### Added "Day One Regret" Retrospective
+This section will be expanded with `[[wiki links]]` to specific sections in `MVA.md`, `SPEC.md`, `DESIGN.md`, and `GOAL.md` as the methodology matures through use.
 
-After the initial methodology creation, we added a required "Day One Regret" section in the observability part of every governance layer.
-
-This forces synthesis to surface instrumentation debt that only became visible under real failure injection.
-
----
-
-## Phase Gate Adjustments
-
-### H2 Graduation Now Requires Explicit Evidence
-
-Originally H2 graduation was somewhat subjective ("we feel we have learned enough").
-
-It was strengthened to require:
-- At least one diagnosed distributed failure
-- At least one cross-cutting concern that visibly evolved
-- 5–15 traceable heuristics in the iteration log
+Example future entries:
+- `[[mva#Cycle 007]]` produced the insight that eventually became the retry policy in `[[spec#Error Handling]]`.
+- The structure of `[[goal#Anticipated Difficulties]]` is derived from patterns observed across multiple `MVA.md` journals.
 
 ---
 
-## Open Questions
+## How to Contribute New Entries
 
-### How Much of the Governance Layer Can Be Auto-Synthesized?
+When a real engagement using the MVA heuristic produces a meaningful discovery:
 
-Early evidence suggests that orchestration contracts and failure taxonomy require strong human judgment, while observability requirements can be partially auto-generated from iteration logs.
-
-This question is still active.
-
----
-
-## How to Add New Entries
-
-When a real Heuristics engagement produces a significant discovery:
-
-1. Add a new top-level section with a clear, stable heading.
-2. Write a leading paragraph (≤250 characters) that gives the section its identity.
-3. Include concrete evidence (project, cycle, symptom).
-4. State the implication for future runs or for updates to `SPEC.md` / templates.
-5. Link back to the source engagement's governance layer or iteration log using `[[ ]]` wiki link style when possible.
+- Add a new top-level section with a clear heading.
+- Begin the section with a concise leading paragraph.
+- Include concrete evidence (project, cycle, or decision).
+- State the implication for future use of the methodology.
+- Use `[[ ]]` wiki links to connect the insight to other documents where appropriate.
 
 ---
 
-*This file is intentionally structured for agent navigation and long-term accumulation. It is not a narrative.*
+*This document grows through use. Its value increases as more real MVA journals are completed and their learnings are mapped.*
