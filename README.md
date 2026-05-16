@@ -1,6 +1,8 @@
-# MVA — Generative Planning Through Sacrificial Scaffolding (MVA Heuristic)
+# MVA — The MVA Heuristic Document System
 
-This repository is the canonical development location for the **Heuristics** planning skill — an inverted, empirical alternative to traditional speculative planning frameworks (Prometheus, `ce-plan`, `blueprint`).
+This repository is the canonical home for the **MVA heuristic** — a generative, empirical methodology for architectural discovery on high-uncertainty problems.
+
+The system is built around a small set of `lat.md`-style documents that enforce a disciplined separation between live discovery and stable execution.
 
 ## The Core Idea
 
@@ -23,36 +25,32 @@ The entire process is still the **"plan phase."** The production system is the o
 - **Governance Layer as Source of Truth** — The rebuild plan is derived from post-experience synthesis, not from the original request.
 - **Minimum Viable Stress** — No governance extraction without real failures and evolved cross-cutting concerns.
 
-## Document Hierarchy (Agent Reading Order)
+## Repository Structure
 
-This repo follows the layered documentation philosophy from:
+The repository is deliberately minimal at the root:
 
-- [lat.md](https://github.com/1st1/lat.md) (structured, linkable knowledge with strict section rules)
-- [goal-forge](https://github.com/michaelpersonal/goal-forge) (SPEC → tightened SPEC → GOAL compilation)
-- [DESIGN.md](https://github.com/google-labs-code/design.md) (machine-readable + human rationale)
+- `AGENTS.md` — Primary entry point and meta-instructions for any agent.
+- `LAT.md` — Structured knowledge graph and cross-project mappings.
+- `SKILL.md` — Adaptive, non-deterministic logic with progressive disclosure.
+- `README.md` — This file.
+- `resources/` — Detailed explanations of the methodology and lifecycle.
+- `templates/` — Production-grade, variable-driven templates for applying the heuristic.
 
-**Recommended reading order for agents:**
+The four working documents used when tackling a new problem (`MVA.md`, `SPEC.md`, `DESIGN.md`, `GOAL.md`) live as clean templates in the `templates/` directory.
+
+## Recommended Reading Order for Agents
 
 ```
 AGENTS.md
     ↓
 LAT.md + SKILL.md
     ↓
-MVA.md / SPEC.md / DESIGN.md
+resources/ (for deep understanding)
     ↓
-GOAL.md
+templates/ (when starting new work)
 ```
 
-### Layer Descriptions
-
-| Layer | Documents | Role |
-|-------|-----------|------|
-| Entry | `AGENTS.md` | How to work *on this repo* (bd, git, quality gates, landing the plane) |
-| Knowledge + Implementation | `LAT.md`, `SKILL.md` | Living trace of the methodology + the executable skill |
-| Contracts & Design | `MVA.md`, `SPEC.md`, `DESIGN.md` | What makes a valid MVA, the formal methodology spec, and skill architecture |
-| Foundation | `GOAL.md` | Deep "why" and long-term success criteria |
-
-This hierarchy ensures agents encounter the *accumulated practice* (`LAT.md`) before the original *speculation* (`SPEC.md` / `GOAL.md`).
+This order ensures agents first internalize the rules and accumulated knowledge before creating new `MVA.md` journals.
 
 ## Project Structure
 
