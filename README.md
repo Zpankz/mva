@@ -58,20 +58,23 @@ This hierarchy ensures agents encounter the *accumulated practice* (`LAT.md`) be
 
 ```
 .
-├── GOAL.md                     # North star and success criteria
-├── SPEC.md                     # Canonical methodology specification (v0.1)
-├── DESIGN.md                   # Skill architecture and harness strategy
-├── LAT.md                      # Living Architecture Trace (cumulative learnings)
-├── SKILL.md                    # Claude Code skill definition
+├── AGENTS.md                   # Entry point + meta-instructions for the MVA heuristic
+├── LAT.md                      # Structured knowledge graph (lat.md style)
+├── SKILL.md                    # Adaptive, nuanced logic (progressive disclosure)
+├── MVA.md                      # Living journal of iteration (written during discovery)
+├── SPEC.md                     # Formal technical specification (post-MVA)
+├── DESIGN.md                   # Detailed technical design (post-MVA)
+├── GOAL.md                     # Executable contract (synthesized from MVA + SPEC + DESIGN)
+├── templates/
+│   ├── MVA.md                  # Template for the living journal (lat.md style)
+│   ├── SPEC.md                 # Template for the formal spec
+│   ├── DESIGN.md               # Template for technical design
+│   └── GOAL.md                 # Template for the executable goal
 ├── README.md
-├── AGENTS.md
 ├── commands/
 │   └── heuristics.md
-├── templates/                  # Shared artifact templates (mva-spec, governance-layer, etc.)
-├── references/
-│   └── phase-gates.md
 └── .grok/skills/heuristics/
-    └── SKILL.md                # Grok-native packed skill (project-scoped)
+    └── SKILL.md
 ```
 
 ## Current Status (May 2026)
