@@ -23,18 +23,36 @@ The entire process is still the **"plan phase."** The production system is the o
 - **Governance Layer as Source of Truth** — The rebuild plan is derived from post-experience synthesis, not from the original request.
 - **Minimum Viable Stress** — No governance extraction without real failures and evolved cross-cutting concerns.
 
-## Canonical Documents (Read in This Order)
+## Document Hierarchy (Agent Reading Order)
 
-| Document | Purpose | Audience |
-|----------|---------|----------|
-| `GOAL.md` | North star, success criteria, what we deliberately do *not* optimize for | Everyone (especially new readers) |
-| `SPEC.md` | Formal, versioned specification of the H0–H5 methodology, phase gates, artifact contracts, and traceability requirements | Implementers, reviewers, contributors |
-| `DESIGN.md` | Architectural and implementation design of the *skill* (dual Claude/Grok adapters, shared template layer, extensibility model) | Skill developers, integrators |
-| `LAT.md` | **Living Architecture Trace** — cumulative wisdom from real Heuristics runs across projects (meta-heuristics, schema evolution, gate refinements) | Deep practitioners, methodology contributors |
+This repo follows the layered documentation philosophy from:
 
-These four documents together form the "source of truth" layer for the methodology.
+- [lat.md](https://github.com/1st1/lat.md) (structured, linkable knowledge with strict section rules)
+- [goal-forge](https://github.com/michaelpersonal/goal-forge) (SPEC → tightened SPEC → GOAL compilation)
+- [DESIGN.md](https://github.com/google-labs-code/design.md) (machine-readable + human rationale)
 
-The `SKILL.md` files (Claude and Grok) are *implementations* of the spec, not the spec itself.
+**Recommended reading order for agents:**
+
+```
+AGENTS.md
+    ↓
+LAT.md + SKILL.md
+    ↓
+MVA.md / SPEC.md / DESIGN.md
+    ↓
+GOAL.md
+```
+
+### Layer Descriptions
+
+| Layer | Documents | Role |
+|-------|-----------|------|
+| Entry | `AGENTS.md` | How to work *on this repo* (bd, git, quality gates, landing the plane) |
+| Knowledge + Implementation | `LAT.md`, `SKILL.md` | Living trace of the methodology + the executable skill |
+| Contracts & Design | `MVA.md`, `SPEC.md`, `DESIGN.md` | What makes a valid MVA, the formal methodology spec, and skill architecture |
+| Foundation | `GOAL.md` | Deep "why" and long-term success criteria |
+
+This hierarchy ensures agents encounter the *accumulated practice* (`LAT.md`) before the original *speculation* (`SPEC.md` / `GOAL.md`).
 
 ## Project Structure
 

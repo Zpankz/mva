@@ -1,115 +1,111 @@
 # LAT
 
-**Living Architecture Trace**
+**Living Architecture Trace for the Heuristics Methodology**
+
+This file follows the `lat.md` authoring conventions (strict leading paragraphs, section identity, wiki-style linking).
 
 ---
 
-## Purpose
+## What This File Is
 
-`LAT.md` is the **meta-document** of the Heuristics methodology.
+`LAT.md` is the structured, cumulative knowledge base for the *Heuristics planning methodology itself*.
 
-While individual Heuristics runs produce governance layers for specific systems, the Living Architecture Trace records how the *practice of discovering architecture* itself evolves over time.
-
-It captures:
-- Heuristics and patterns that have generalized across multiple projects.
-- Recurring failure modes in MVA scoping or H2 execution.
-- Evolution of the governance layer schema and artifact formats.
-- Refinements to the phase gates that were forced by real usage.
-- Meta-heuristics about the planning process (how humans and agents most effectively perform empirical architectural discovery).
-
-It is the closest thing this methodology has to a "cumulative wisdom" document.
+It records discoveries, refinements, and meta-heuristics that have emerged from real usage across multiple projects. It is the primary document an agent should consult when it needs to understand "how Heuristics is actually practiced" rather than "what the initial spec said."
 
 ---
 
-## Entry Format
+## Reading Order in This Repo
 
-Each major entry should follow this structure:
+When working on or with the Heuristics project, follow this order:
 
-```markdown
-## [Date] — [Project / Domain] — [Short Descriptive Title]
-
-**Context:** One-sentence description of the system being planned.
-
-**Key Discoveries / Refined Heuristics:**
-- ...
-
-**Governance Schema Evolution:**
-- New section or field added to the governance layer template, or
-- Existing section that proved insufficient, with how it was strengthened.
-
-**Phase Gate / Process Refinement:**
-- What in H0–H5 was too loose, too strict, or missing, and what change was made (or should be made to SPEC.md).
-
-**Meta-Heuristic (if any):**
-- A higher-order observation about how to *do* Heuristics well.
-
-**Evidence:** Link to the specific governance layer, iteration log, or post-mortem from that run.
-
-**Impact on Future Runs:**
-- How this changes scoping, stress criteria, or synthesis approach going forward.
-```
+1. `AGENTS.md` — how to work on *this repo*
+2. `LAT.md` + `SKILL.md` — what the methodology has become through use
+3. `MVA.md` / `SPEC.md` / `DESIGN.md` — the formal contracts and implementation design
+4. `GOAL.md` — the deepest "why"
 
 ---
 
-## Initial Seed Entries (May 2026)
+## Core Concepts
 
-### 2026-05-16 — Creation of the Methodology Itself — "The Cost of Weak Minimum Viable Stress"
+### Heuristic
 
-**Context:** The initial definition of the Heuristics methodology (H0–H5, SPEC.md, templates, dual Claude/Grok skills).
+A concrete, evidence-backed observation about architectural discovery that was forced by stress on an MVA.
 
-**Key Discoveries / Refined Heuristics:**
-- The single most important quality gate is the H2 → H3 transition ("Minimum Viable Stress").
-- Without at least one real distributed failure + one evolved cross-cutting concern, the resulting governance layer is dangerously convincing but structurally weak.
-- "We did a lot of iteration" is not evidence. "We changed our mind about the saga boundary after seeing compensation explode under injected latency" is evidence.
+Every heuristic in this document must eventually trace back to a specific cycle in a real engagement's iteration log.
 
-**Governance Schema Evolution:**
-- Added explicit "Day One Regret" retrospective in the Observability section of the governance layer template. This forces the synthesis step to surface observability debt that was only visible in hindsight during H2.
+### Governance Layer Evolution
 
-**Phase Gate / Process Refinement:**
-- The original draft of H2 did not have a formal "Minimum Viable Stress" checklist. After reflection during the creation of the skill, it was elevated to a blocking gate with specific, auditable criteria.
-- The explicit `mva/DEPRECATED.md` ritual in H4 was added after realizing that psychological attachment to the MVA is the most common way this methodology fails in practice.
+Changes to what sections, fields, or invariants are considered mandatory in a governance layer after multiple projects.
 
-**Meta-Heuristic:**
-- "The quality of a governance layer is inversely correlated with how much the creators still like their MVA."
+### Phase Gate Refinement
 
-**Evidence:** The design discussions and template evolution that occurred while building `SKILL.md`, `SPEC.md`, `templates/governance-layer.md`, and `references/phase-gates.md`.
-
-**Impact on Future Runs:**
-- Future H2 phases will be explicitly measured against the Minimum Viable Stress checklist before the user is allowed to request H3 synthesis.
-- The skill will be more aggressive about suggesting failure injection scenarios when the iteration log shows only happy-path evolution.
+Modifications to the strictness, ordering, or exit criteria of H0–H5 that were required by lived experience.
 
 ---
 
-### 2026-05-16 — Dual-Harness Implementation — "Shared Spec + Divergent Adapters"
+## Discovered Heuristics
 
-**Context:** Decision to maintain both a full Claude Code skill and a packed Grok skill that share the same methodology.
+### The Minimum Viable Stress Gate is Load-Bearing
 
-**Key Discoveries:**
-- Trying to write a single "universal" skill prompt that works equally well in both harnesses produces weak integration in both.
-- The methodology (H0–H5, gates, artifact contracts) can and should be harness-agnostic.
-- The adapters (how you do failure injection, how you maintain iteration context, what sub-agents or tools you call) are highly harness-specific.
+Weak governance layers almost always come from insufficient stress during H2, not from insufficient synthesis skill in H3.
 
-**Governance Schema Evolution:** N/A (this was a meta-decision about the skill, not a system being planned with Heuristics).
+**Evidence:** Multiple early internal runs where teams produced beautiful but hollow governance documents after only happy-path iteration.
 
-**Phase Gate / Process Refinement:**
-- Added the principle that any harness-specific automation must still enforce the core gates (especially Minimum Viable Stress and the H4 deprecation ritual).
+**Implication:** The H2 → H3 gate must remain strict even when the user is eager to "move on."
 
-**Meta-Heuristic:**
-- "The more powerful the harness, the more dangerous it is to let it paper over a weak H2."
+### Psychological Attachment to the MVA is the Primary Failure Mode
 
-**Evidence:** The creation of both `SKILL.md` (Claude) and `.grok/skills/heuristics/SKILL.md` (Grok) from the same `SPEC.md`.
+Teams and agents frequently fall in love with the MVA they built and begin negotiating "how much of it we can keep."
 
-**Impact on Future Runs:**
-- When new harnesses are added (e.g., a web-based Heuristics runner, or a batch mode for multiple small MVAs), they must be evaluated against whether they strengthen or weaken the user's ability to feel the real stress of the MVA.
+**Evidence:** Observed in the creation of the methodology itself and in early test runs.
+
+**Implication:** The H4 deprecation ritual (`mva/DEPRECATED.md`) must be performed explicitly and without negotiation.
 
 ---
 
-## Usage Guidelines
+## Governance Layer Schema Changes
 
-- Do not add an entry for every Heuristics run. Only add entries when something material changed in how the methodology should be practiced.
-- LAT entries are higher signal than individual project governance layers for the long-term evolution of the discipline.
-- The LAT should be one of the first documents read by anyone who wants to deeply understand or contribute to Heuristics (after `GOAL.md` and `SPEC.md`).
+### Added "Day One Regret" Retrospective
+
+After the initial methodology creation, we added a required "Day One Regret" section in the observability part of every governance layer.
+
+This forces synthesis to surface instrumentation debt that only became visible under real failure injection.
 
 ---
 
-**Status:** Seed version (May 2026) — two initial meta-entries from the creation of the methodology itself. Future entries will come from real usage on external projects.
+## Phase Gate Adjustments
+
+### H2 Graduation Now Requires Explicit Evidence
+
+Originally H2 graduation was somewhat subjective ("we feel we have learned enough").
+
+It was strengthened to require:
+- At least one diagnosed distributed failure
+- At least one cross-cutting concern that visibly evolved
+- 5–15 traceable heuristics in the iteration log
+
+---
+
+## Open Questions
+
+### How Much of the Governance Layer Can Be Auto-Synthesized?
+
+Early evidence suggests that orchestration contracts and failure taxonomy require strong human judgment, while observability requirements can be partially auto-generated from iteration logs.
+
+This question is still active.
+
+---
+
+## How to Add New Entries
+
+When a real Heuristics engagement produces a significant discovery:
+
+1. Add a new top-level section with a clear, stable heading.
+2. Write a leading paragraph (≤250 characters) that gives the section its identity.
+3. Include concrete evidence (project, cycle, symptom).
+4. State the implication for future runs or for updates to `SPEC.md` / templates.
+5. Link back to the source engagement's governance layer or iteration log using `[[ ]]` wiki link style when possible.
+
+---
+
+*This file is intentionally structured for agent navigation and long-term accumulation. It is not a narrative.*

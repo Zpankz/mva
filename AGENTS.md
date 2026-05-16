@@ -13,6 +13,17 @@ bd sync
 git status
 ```
 
+## Document Reading Order (for Agents)
+
+When working in this repository, read documents in this order:
+
+1. **AGENTS.md** — How to work on *this repo* (bd, git, quality, landing the plane).
+2. **LAT.md + SKILL.md** — The living knowledge graph of the methodology + the skill implementation.
+3. **MVA.md / SPEC.md / DESIGN.md** — Formal contracts, methodology rules, and skill architecture.
+4. **GOAL.md** — Deepest "why" and success criteria.
+
+This order implements the layered philosophy from `lat.md`, `goal-forge`, and `DESIGN.md` conventions.
+
 ## Core Mission
 
 Build and refine an **inverted, empirical planning framework** that:
